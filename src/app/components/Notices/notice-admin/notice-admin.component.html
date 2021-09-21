@@ -1,0 +1,294 @@
+<div class="container-general">
+  <div class="row banner">
+    <img src="../../../../assets/banner.jpg" alt="banner image" />
+    <div class="banner-info col-12">
+      <div class="banner-text">
+        <div class="title">Adopta un angel, expande tu familia</div>
+        <br />
+        <div class="subtitle">Conoce nuestros animalitos</div>
+        <br />
+        <button class="btn btn-primary" [routerLink]="['/mascotas']">
+          Ver >
+        </button>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="row">
+    <div class="main-sections col-12 col-lg-8">
+      <div class="adoption section row">
+        <b class="title col-12">Adopta</b><br /><br /><br /><br />
+        <p class="col-12 col-sm-6">
+          Abre tu corazón y adopta a un amigo, porque a un amigo no se compra a
+          un amigo se adopta y se lo hace parte de la familia, que esperas para
+          ser parte de la suya.
+        </p>
+        <img
+          class="col-12 col-sm-6"
+          src="../../../assets/img-slide-4.jpg"
+          alt="adoption image"
+        />
+      </div>
+      <div class="support section row right-alligned">
+        <b class="title col-12">Como ayudar</b><br /><br /><br /><br />
+
+        <img
+          class="col-12 col-sm-6"
+          src="../../../assets/img-slide-3.jpg"
+          alt="adoption image"
+        />
+
+        <p class="col-12 col-sm-6">
+          Si te gustan los animalitos puedes ser parte de la familia San Roque,
+          siendo padrino o ayudando a conseguir hogares definitivos o abrir tu
+          casa para ser un hogar temporal.
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="list-notice col-12 col-lg-2">
+      <b class="title">Noticias</b><br />
+      <div class="indiv-notice-add">
+        <button
+          class="btnAdd"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#adNotice"
+        >
+          <a class="material-icons btnA">add_circle_outline</a><br />
+          <h4 style="color: white">Añadir</h4>
+        </button>
+      </div>
+      <div
+        class="modal fade"
+        id="adNotice"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content" style="border-radius: 5px">
+            <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalLabel">Nueva noticia</h2>
+            </div>
+            <form
+              class="form"
+              action=""
+              [formGroup]="formModel"
+              (ngSubmit)="register()"
+            >
+              <div class="modal-body">
+                <!-- titulo -->
+                <label for="nw-tit">Titulo</label>
+                <div
+                  *ngIf="
+                    formModel.get('title')?.invalid &&
+                    formModel.get('title')?.errors &&
+                    (formModel.get('title')?.dirty ||
+                      formModel.get('title')?.touched ||
+                      showAllValidators)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="formModel.get('title')?.hasError('required')"
+                  >
+                    El título de la noticia es requerido. </small
+                  ><br />
+                </div>
+                <input
+                  type="text"
+                  id="nw-tit"
+                  formControlName="title"
+                  name="title"
+                  placeholder="titulo de noticia"
+                  required
+                /><br />
+                <!-- Fecha -->
+                <label for="nw-fech">Fecha</label>
+                <div
+                  *ngIf="
+                    formModel.get('date')?.invalid &&
+                    formModel.get('date')?.errors &&
+                    (formModel.get('date')?.dirty ||
+                      formModel.get('date')?.touched ||
+                      showAllValidators)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="formModel.get('date')?.hasError('required')"
+                  >
+                    La fecha de la noticia es requerida. </small
+                  ><br />
+                </div>
+                <input
+                  type="datetime-local"
+                  id="nw-fech"
+                  formControlName="date"
+                  name="date"
+                  min="2018-01-01"
+                  max="30-12-31"
+                  required
+                /><br />
+                <!-- Imagen -->
+
+                <div class="drop-image imgNo">
+                  <app-image-upload [view]="this"></app-image-upload>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div id="addMessage"></div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="background-color: brown; border: none"
+                  id="añadir"
+                >
+                  <span class="glyphicon glyphicon-search"></span> Añadir
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="container-notices">
+        <div *ngFor="let notice of notices">
+          <div class="indiv-notice" style="position: relative">
+            <b>{{ notice.title }}</b
+            ><br />
+            <div [id]="notice.id" class="img-notice">
+              <img
+                src="{{ notice.image }}"
+                alt="image-notice-{{ notice.title }}"
+                class="img"
+              />
+              <div class="modal-button">
+                <button
+                  class="edit"
+                  type="button"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#notice' + notice.id.toString()"
+                >
+                  <div class="edbn">
+                    <mat-icon class="expand_icon"> edit </mat-icon>
+                  </div>
+                </button>
+                <button
+                  class="delete"
+                  type="button"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#elimNotice' + notice.id.toString()"
+                >
+                  <div class="elmtbn">
+                    <mat-icon class="expand_icon"> delete </mat-icon>
+                  </div>
+                </button>
+              </div>
+              <!-- Modal editar -->
+              <div
+                class="modal fade"
+                id="notice{{ notice.id }}"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius: 5px">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">
+                        Editar noticia
+                      </h2>
+                    </div>
+                    <form
+                      class="form"
+                      action=""
+                      [formGroup]="formModel"
+                      (ngSubmit)="edit(notice.id.toString())"
+                    >
+                      <div class="modal-body">
+                        <label for="edi-tit{{ notice.id }}">Titulo</label>
+                        <input
+                          type="text"
+                          id="edi-tit{{ notice.id }}"
+                          formControlName="title"
+                          name="title"
+                          placeholder="{{ notice.title }}"
+                          required
+                        /><br />
+                        <label for="edi-fech{{ notice.id }}">Fecha</label>
+
+                        <input
+                          type="datetime-local"
+                          value="{{ notice.date }}"
+                          id="edi-fech{{ notice.id }}"
+                          min="2018-01-01T00:00"
+                          max="2030-01-01T00:00"
+                          required
+                        /><br />
+
+                        <div class="drop-image imgNo">
+                          <app-image-upload [view]="this"></app-image-upload>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div id="editMessage"></div>
+                        <button type="submit" class="btn btn-primary">
+                          Editar
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal eliminar -->
+              <div
+                class="modal fade"
+                id="elimNotice{{ notice.id }}"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius: 5px">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">
+                        Eliminar noticia
+                      </h2>
+                    </div>
+                    <div class="modal-body" style="color: black">
+                      Esta a punto de eliminar la noticia
+                      <span class="elm-tt">{{ notice.title }}</span
+                      ><br />
+                      ¿Quiere continuar?
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="delete(notice.id.toString())"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <b>El dia {{ notice.date | date: "dd/MM/yyyy 'a horas' h:mma" }}</b
+            ><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br />

@@ -1,0 +1,90 @@
+<h1 class="title">Inicie Sesion</h1>
+<div class="contenedor">
+  <img class="img-lg" src="../../../assets/img-Login.png" alt="" />
+  <form class="fomulario" [formGroup]="formModel" (ngSubmit)="login()">
+    <label for="lgUser">Email:</label><br />
+    <input
+      id="Email"
+      formControlName="Email"
+      type="email"
+      [class.is-invalid]="
+        formModel.get('Email')?.touched && formModel.get('Email')?.invalid
+      "
+      class="intps"
+      placeholder="Ingrese su correo"
+      pattern=".+@.+"
+      required
+    /><br />
+    <div
+      style="margin-left: 18px"
+      *ngIf="
+        formModel.get('Email')?.invalid &&
+        formModel.get('Email')?.errors &&
+        (formModel.get('Email')?.dirty || formModel.get('Email')?.touched)
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="
+          formModel.get('Email')?.hasError('required') || !validators.Email
+        "
+      >
+        Campo invalido, ingrese un correo valido.
+      </small>
+    </div>
+    <br />
+    <label for="lgPass">Contraseña:</label><br />
+    <input
+      id="Password"
+      formControlName="Password"
+      type="Password"
+      class="intps"
+      [class.is-invalid]="
+        formModel.get('Password')?.touched && formModel.get('Password')?.invalid
+      "
+      placeholder="Ingrese su contraseña"
+      required
+    /><br />
+    <div
+      style="margin-left: 18px"
+      *ngIf="
+        formModel.get('Password')?.invalid &&
+        formModel.get('Password')?.errors &&
+        (formModel.get('Password')?.dirty || formModel.get('Password')?.touched)
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="
+          formModel.get('Password')?.hasError('Password') ||
+          !validators.Password
+        "
+      >
+        Ingrese una contraseña.
+      </small>
+    </div>
+    <div class="forget">
+      <label class="forgetPass" [routerLink]="['/olvidarContraseña']">
+        ¿Olvidó su contraseña?
+      </label>
+    </div>
+    <div class="row" id="con-btns">
+      <button
+        [routerLink]="['/mascotas']"
+        class="btn btn-secondary"
+        style="margin-right: 5%; margin-left: 20%"
+      >
+        <span class="glyphicon glyphicon-search"></span> Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="background-color: brown; margin-left: 5%; border: none"
+      >
+        <span class="glyphicon glyphicon-search"></span> Ingresar
+      </button>
+    </div>
+  </form>
+</div>
+<app-modal-message></app-modal-message>
+<br /><br />

@@ -1,0 +1,9 @@
+.bg {
+  background-image: url(https://i.pinimg.com/originals/5b/08/7d/5b087dafa7f21b8bea3c3bd288d7e63b.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+div.space {
+  height: 150px;
+}

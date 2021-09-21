@@ -1,0 +1,295 @@
+<div class="row">
+  <div class="col-1 col-sm-3"></div>
+  <div class="container col-10 col-sm-6" id="form">
+    <h1 style="text-align: center">Añadir mascota</h1>
+    <br />
+    <form
+      [formGroup]="formModel"
+      (ngSubmit)="confirm_modal()"
+      class="form-container"
+    >
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <label for="name">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              formModel.get('name')?.touched && formModel.get('name')?.invalid
+            "
+            placeholder="Nombre"
+            id="name"
+            formControlName="name"
+            pattern="^[A-Za-z]+$"
+            maxlength="35"
+            style="text-transform: capitalize"
+            required
+          />
+          <div
+            *ngIf="
+              formModel.get('name')?.invalid &&
+              formModel.get('name')?.errors &&
+              (formModel.get('name')?.dirty ||
+                formModel.get('name')?.touched ||
+                showAllValidators)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="
+                formModel.get('name')?.hasError('required') || !validators.name
+              "
+            >
+              Campo invalido, escriba caracter de a-z.
+            </small>
+          </div>
+        </div>
+        <div class="form-group col-12 col-sm-6 dropdown" style="height: 70px">
+          <label for="Size">Tamaño</label>
+          <select
+            class="btn btn-light"
+            name="Size"
+            id="Size"
+            formControlName="size"
+            name="size"
+            style="width: 100%; color: gray"
+          >
+            <option *ngFor="let size of sizes" [value]="size">
+              <span>{{ size }}</span>
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <label for="descripcion">Descripción</label>
+          <div
+            *ngIf="
+              formModel.get('description')?.invalid &&
+              formModel.get('description')?.errors &&
+              (formModel.get('description')?.dirty ||
+                formModel.get('description')?.touched ||
+                showAllValidators)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="formModel.get('description')?.hasError('required')"
+            >
+              La descripción es requerida. </small
+            ><br />
+          </div>
+          <textarea
+            class="form-control"
+            rows="4"
+            cols="50"
+            [class.is-invalid]="
+              formModel.get('description')?.touched &&
+              formModel.get('description')?.invalid
+            "
+            id="descripcion"
+            formControlName="description"
+            required
+            placeholder="Añada una descripción"
+            name="description"
+            style="border-radius: 8px; background-color: #f9f9f9"
+          ></textarea>
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label for="vacunas">Vacunas</label>
+          <form id="vacunas" formGroupName="vaccines" class="form-control">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="AntiRabica"
+              name="AntiRabica"
+              value="AntiRabica"
+              formControlName="Antirabica"
+            />
+            <label for="AntiRabica"> Antirrabica</label><br />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="Desparasitante"
+              name="Desparasitante"
+              value="Desparasitante"
+              formControlName="Desparasitante"
+            />
+            <label for="Desparasitante"> Desparasitante</label><br />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="Parvovirus"
+              name="Parvovirus"
+              value="Parvovirus"
+              formControlName="Parvovirus"
+            />
+            <label for="Parvovirus"> Parvovirus</label><br />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="Hexavalente"
+              name="Hexavalente"
+              value="Hexavalente"
+              formControlName="Hexavalente"
+            />
+            <label for="Hexavalente"> Hexavalente</label><br />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="Octavalente"
+              name="Octavalente"
+              value="Octavalente"
+              formControlName="Octavalente"
+            />
+            <label for="Octavalente"> Octavalente</label><br />
+            <br />
+          </form>
+        </div>
+      </div>
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <label
+            class="form-check-label"
+            for="flexSwitchCheckChecked"
+            style="justify-content: center"
+            >Sexo</label
+          >
+          <br />
+          <div class="radio input-container">
+            <label>
+              <input type="radio" formControlName="sex" name="sex" value="M" />
+              <span> Macho </span>
+            </label>
+            <br />
+            <label>
+              <input type="radio" formControlName="sex" name="sex" value="H" />
+              <span> Hembra</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          Edad
+          <div for="edad-form" formGroupName="age" class="row input-container">
+            <div class="col-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Años"
+                id="edad-años"
+                formControlName="years"
+                name="years"
+                required
+              />
+              <div
+                *ngIf="
+                  formModel.get('age')?.get('years')?.invalid &&
+                  formModel.get('age')?.get('years')?.errors &&
+                  (formModel.get('age')?.get('years')?.dirty ||
+                    formModel.get('age')?.get('years')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    !formModel.get('age')?.get('years')?.hasError('ControlYear')
+                  "
+                >
+                  Año inválido
+                </small>
+              </div>
+            </div>
+            <div class="col-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Meses"
+                id="edad-meses"
+                formControlName="months"
+                name="months"
+                required
+              />
+              <div
+                *ngIf="
+                  formModel.get('age')?.get('months')?.invalid &&
+                  formModel.get('age')?.get('months')?.errors &&
+                  (formModel.get('age')?.get('months')?.dirty ||
+                    formModel.get('age')?.get('months')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    !formModel
+                      .get('age')
+                      ?.get('months')
+                      ?.hasError('ControlMonth')
+                  "
+                >
+                  Mes inválido
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-inputs">
+        <div class="form-group form-check form-switch col-12 col-sm-6">
+          <label for="Esterlización">Esterilización</label>
+          <br />
+          <div
+            class="form-group form-check form-switch input-container"
+            style="padding-left: 30px"
+          >
+            <input
+              id="sterilization"
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckChecked"
+              checked
+              formControlName="sterilization"
+              name="sterilization"
+            />
+            <label class="form-check-label" for="flexSwitchCheckChecked"
+              >Esterilizado</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="drop-image row row-inputs">
+        <div class="form-group img">
+          <app-image-upload [view]="this"></app-image-upload>
+        </div>
+      </div>
+
+      <div class="row row-inputs" style="margin-top: 20px">
+        <button
+          [routerLink]="['/mascotasAd']"
+          class="btn btn-secondary"
+          style="margin-right: 5%"
+          id="añadir"
+        >
+          <span class="glyphicon glyphicon-search"></span> Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn"
+          style="
+            background-color: brown;
+            margin-left: 5%;
+            border: none;
+            color: #ffff;
+          "
+          id="añadir"
+        >
+          <span class="glyphicon glyphicon-search"></span> Añadir
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-modal-message></app-modal-message>

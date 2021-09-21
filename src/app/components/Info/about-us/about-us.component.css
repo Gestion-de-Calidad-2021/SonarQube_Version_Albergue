@@ -1,0 +1,33 @@
+.somos {
+  background-image: url("https://creazilla-store.fra1.digitaloceanspaces.com/silhouettes/2592/dog-bone-silhouette-000000-md.png");
+}
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.raquel{
+  max-height: 214px;
+}
+.franja{
+  text-align: center;
+  font-size: 3vw;
+}
+
+@media (max-width: 993px) {
+  .raquel{
+    max-height: 500px;
+  }
+}
+@media (max-width: 576px) {
+  .franja{
+    text-align: center;
+    font-size: 5vw;
+  }
+  .raquel{
+    max-height: 500px;
+  }
+}

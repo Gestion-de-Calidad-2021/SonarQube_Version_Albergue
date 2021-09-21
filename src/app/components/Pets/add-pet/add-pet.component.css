@@ -1,0 +1,53 @@
+#form {
+  background-color: #ffffff;
+  margin: 3% 0;
+  padding: 2%;
+  color: #070707;
+  box-shadow: 40px 40px 50px rgba(0, 0, 0, 0.1);
+  border: 2px solid #c5c5c5;
+}
+div {
+  border-radius: 5px;
+}
+
+input {
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.btn {
+  margin: auto;
+}
+
+.radio {
+  display: flex;
+  justify-content: space-around;
+}
+.drop-image {
+  display: block;
+  height: 200px;
+}
+.left,
+.right,
+.center {
+  margin: 0;
+}
+.form-group {
+  padding: 10px 15px;
+  margin: 0;
+}
+.form-container {
+  padding: 0 20px;
+}
+#vacunas {
+  height: 80%;
+  background-color: #f9f9f9;
+  color: black;
+  padding-left: 30px;
+  margin-left: 0;
+}
+.input-container {
+  background-color: #f9f9f9;
+  margin-left: 0;
+  padding: 20px 0;
+}

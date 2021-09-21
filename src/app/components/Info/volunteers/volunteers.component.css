@@ -1,0 +1,201 @@
+.contenedor-pic {
+  position: relative;
+  border-radius: 5px;
+  width: 88%;
+  height: 28vw;
+  margin: 3% auto;
+  overflow: hidden;
+}
+.contenedor-secciones {
+  padding: 0;
+  margin: 5%;
+}
+.img-pic {
+  width: 100%;
+  height: 100%;
+}
+.cont-tit {
+  position: absolute;
+  left: 5%;
+  top: 30%;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.tit {
+  color: white;
+  font-size: 3.5vw;
+  font-weight: bold;
+}
+.btm-redir {
+  padding: 0px 6px;
+  border-radius: 10px;
+  background-color: brown;
+  text-decoration: none;
+  font-size: 2vw;
+  color: white;
+  position: absolute;
+  left: 5%;
+  bottom: 15%;
+  transition: 0.3s;
+}
+.btm-redir:hover {
+  transition: 0.3s;
+  transform: translate(0px, 5px);
+  background-color: rgb(211, 49, 49);
+}
+
+.blocks {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 28vw;
+  position: relative;
+}
+.title {
+  font-weight: bold;
+  font-size: 2vw;
+}
+.texto {
+  font-size: 1.2vw;
+}
+
+.block {
+  color: #84141b;
+  height: 28vw;
+  width: 40%;
+  width: calc(40% + 5vw);
+  overflow: hidden;
+}
+
+.block--left--text {
+  display: flex;
+  align-items: center;
+  padding: 15px 12% 15px 15px;
+  position: absolute;
+  border-radius: 5px 5px 0px 5px;
+  left: 20px;
+  clip-path: polygon(0% 0%, 67% 0%, 100% 100%, 0% 100%);
+}
+.block--left--img {
+  position: absolute;
+  border-radius: 5px 5px 0px 5px;
+  left: 20px;
+  clip-path: polygon(0% 0%, 67% 0%, 100% 100%, 0% 100%);
+}
+
+.block--right--img {
+  position: absolute;
+  border-radius: 5px 5px 5px 0px;
+  right: 20px;
+  clip-path: polygon(33% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.block--right--text {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  padding: 15px 15px 15px 8%;
+  position: absolute;
+  border-radius: 5px 5px 5px 0px;
+  right: 20px;
+}
+
+.block--right--img .img-diag {
+  width: 100%;
+  height: 100%;
+}
+.block--left--img .img-diag {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-des {
+  position: relative;
+  background-color: brown;
+  padding: 6px;
+  border-radius: 8px;
+  min-width: 80%;
+  color: white;
+  font-size: 1.2vw;
+  text-decoration: none;
+}
+
+.logoPDF {
+  max-width: 20%;
+  max-height: 80%;
+  position: absolute;
+  right: 2%;
+}
+
+@media (max-width: 599px) {
+  .blocks {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 68vw;
+    position: relative;
+  }
+
+  .block--left--text {
+    padding: 5px;
+    align-items: center;
+    border-radius: 5px;
+    left: 20px;
+    width: 90%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .block--right--img {
+    position: absolute;
+    border-radius: 5px;
+    right: 20px;
+    width: 88%;
+    top: 50%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .block--right--text {
+    padding: 5px;
+    align-items: center;
+    text-align: right;
+    border-radius: 5px;
+    left: 20px;
+    width: 90%;
+  }
+  .block--left--img {
+    border-radius: 5px;
+    width: 88%;
+    left: 20px;
+    top: 50%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .contenedor-pic {
+    border-radius: 5px;
+  }
+  .cont-tit {
+    top: 20%;
+    border-radius: 5px;
+    padding: 7px;
+    padding-bottom: 3px;
+  }
+  .title {
+    font-size: 3.5vw;
+  }
+  .tit {
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .btm-redir {
+    font-size: 2.8vw;
+  }
+  .con-tex {
+    line-height: 60%;
+  }
+  .texto {
+    font-size: 3vw;
+  }
+  .without-mar {
+    margin-bottom: 7px;
+  }
+  .lista {
+    text-align: right !important;
+    list-style: none;
+  }
+}

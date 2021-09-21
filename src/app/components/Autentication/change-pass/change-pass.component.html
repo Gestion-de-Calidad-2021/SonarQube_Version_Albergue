@@ -1,0 +1,89 @@
+<h1 class="title">Cambio de contraseña</h1>
+<div class="contenedor">
+  <img class="img-lg" src="../../../assets/img-Login.png" alt="" />
+  <form class="fomulario" [formGroup]="formModel" (ngSubmit)="change()">
+    <label for="lgUser">Nueva Contraseña:</label><br />
+    <input
+      id="Password"
+      formControlName="Password"
+      type="Password"
+      class="intps"
+      [class.is-invalid]="
+        formModel.get('Password')?.touched && formModel.get('Password')?.invalid
+      "
+      placeholder="Ingrese su contraseña"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#$%^&*_=+-]).{8,16}$"
+      required
+    /><br />
+
+    <div
+      style="margin-left: 18px"
+      *ngIf="
+        formModel.get('Password')?.dirty || formModel.get('Password')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="formModel.get('Password')?.hasError('required')"
+      >
+        Contraseña no válida.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="formModel.get('Password')?.errors?.pattern"
+      >
+        Asegurese que su contraseña incluya almenos un número, una mayúscula,
+        una minúscula y tenga almenos 8 caracteres.
+      </small>
+    </div>
+
+    <br />
+    <label for="lgPass">Confirme Contraseña:</label><br />
+    <input
+      id="ConfirmPassword"
+      formControlName="ConfirmPassword"
+      type="Password"
+      class="intps"
+      [class.is-invalid]="
+        formModel.get('ConfirmPassword')?.touched &&
+        formModel.get('ConfirmPassword')?.invalid
+      "
+      placeholder="Ingrese su contraseña"
+      required
+    /><br />
+
+    <div
+      style="margin-left: 18px"
+      *ngIf="
+        formModel.get('Password')?.dirty || formModel.get('Password')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="
+          formModel.get('ConfirmPassword')?.value !==
+          formModel.get('Password')?.value
+        "
+      >
+        Su contraseña no coincide.
+      </small>
+    </div>
+    <div class="row" id="con-btns">
+      <button
+        [routerLink]="['/mascotasAd']"
+        class="btn btn-secondary"
+        style="margin-right: 5%; margin-left: 20%"
+      >
+        <span class="glyphicon glyphicon-search"></span> Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="background-color: brown; margin-left: 5%; border: none"
+      >
+        <span class="glyphicon glyphicon-search"></span> Cambiar
+      </button>
+    </div>
+  </form>
+</div>
+<app-modal-message></app-modal-message>

@@ -1,0 +1,473 @@
+<div class="row">
+  <div class="col-1 col-sm-3"></div>
+  <div class="container col-10 col-sm-6" id="form">
+    <h2 style="display: inline; text-transform: capitalize">
+      Editar: {{ singleDog.name }}
+    </h2>
+    <br /><br />
+    <form
+      [formGroup]="formModel"
+      (ngSubmit)="confirm_modal()"
+      class="form-container"
+    >
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <label for="name">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              formModel.get('name')?.touched && formModel.get('name')?.invalid
+            "
+            placeholder="{{ singleDog.name }}"
+            value="{{ singleDog.name }}"
+            id="name"
+            formControlName="name"
+            pattern="^[A-Za-z]+$"
+            maxlength="35"
+            style="text-transform: capitalize"
+          />
+          <div
+            *ngIf="
+              formModel.get('name')?.invalid &&
+              formModel.get('name')?.errors &&
+              (formModel.get('name')?.dirty || formModel.get('name')?.touched)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="
+                formModel.get('name')?.hasError('required') || !validators.name
+              "
+            >
+              Escriba Caracterer del A Z
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 dropdown" style="height: 70px">
+          <div *ngIf="singleDog.size === 'Pequeño'">
+            <label class="form-check-label" for="Size"
+              >Tamaño actual: Pequeño</label
+            >
+            <select
+              class="btn btn-light"
+              name="size"
+              id="size"
+              formControlName="size"
+              name="size"
+              style="width: 100%; color: gray"
+            >
+              <option value="Pequeño" selected>Pequeño</option>
+              <option value="Mediano">Mediano</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+          <div *ngIf="singleDog.size === 'Mediano'">
+            <label class="form-check-label" for="Size"
+              >Tamaño actual: Mediano</label
+            >
+            <select
+              class="btn btn-light"
+              name="size"
+              id="size"
+              formControlName="size"
+              name="size"
+              style="width: 100%; color: gray"
+            >
+              <option value="Pequeño">Pequeño</option>
+              <option value="Mediano" selected>Mediano</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+          <div *ngIf="singleDog.size === 'Grande'">
+            <label class="form-check-label" for="Size"
+              >Tamaño actual: Grande</label
+            >
+            <select
+              class="btn btn-light"
+              name="size"
+              id="size"
+              formControlName="size"
+              name="size"
+              style="width: 100%; color: gray"
+            >
+              <option value="Pequeño">Pequeño</option>
+              <option value="Mediano">Mediano</option>
+              <option value="Grande" selected>Grande</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <label for="descripcion">Descripción</label>
+          <div
+            *ngIf="
+              formModel.get('description')?.invalid &&
+              formModel.get('description')?.errors &&
+              (formModel.get('description')?.dirty ||
+                formModel.get('description')?.touched)
+            "
+          >
+            <small
+              class="text-danger"
+              *ngIf="formModel.get('description')?.hasError('required')"
+            >
+              La descripción es requerida.
+            </small>
+            <br />
+          </div>
+          <textarea
+            class="form-control"
+            rows="4"
+            cols="50"
+            [class.is-invalid]="
+              formModel.get('description')?.touched &&
+              formModel.get('description')?.invalid
+            "
+            id="descripcion"
+            formControlName="description"
+            placeholder="{{ singleDog.description }}"
+            value="{{ singleDog.description }}"
+            name="description"
+            style="border-radius: 8px; background-color: #f9f9f9"
+          ></textarea>
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label for="vacunas">Vacunas</label>
+          <form id="vacunas" formGroupName="vaccines" class="form-control">
+            <span *ngIf="isVacc('Antirrabica', singleDog.vaccines) == true">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChA{{ singleDog.id }}"
+                name="AntiRabica"
+                value="AntiRabica"
+                checked
+              />
+            </span>
+            <span *ngIf="isVacc('Antirrabica', singleDog.vaccines) == false">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChA{{ singleDog.id }}"
+                name="AntiRabica"
+                value="AntiRabica"
+              />
+            </span>
+            <label for="ChA{{ singleDog.id }}"> Antirrabica</label><br />
+
+            <span *ngIf="isVacc('Desparasitante', singleDog.vaccines) == true">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChD{{ singleDog.id }}"
+                name="Desparasitante"
+                value="Desparasitante"
+                checked
+              />
+            </span>
+            <span *ngIf="isVacc('Desparasitante', singleDog.vaccines) == false">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChD{{ singleDog.id }}"
+                name="Desparasitante"
+                value="Desparasitante"
+              />
+            </span>
+            <label for="ChD{{ singleDog.id }}"> Desparasitante</label><br />
+
+            <span *ngIf="isVacc('Parvovirus', singleDog.vaccines) == true">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChPa{{ singleDog.id }}"
+                name="Parvovirus"
+                value="Parvovirus"
+                checked
+              />
+            </span>
+            <span *ngIf="isVacc('Parvovirus', singleDog.vaccines) == false">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChPa{{ singleDog.id }}"
+                name="Parvovirus"
+                value="Parvovirus"
+              />
+            </span>
+            <label for="ChPa{{ singleDog.id }}"> Parvovirus</label ><br />
+              
+            <span *ngIf="isVacc('Hexavalente', singleDog.vaccines) == true">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChHe{{ singleDog.id }}"
+                name="Hexavalente"
+                value="Hexavalente"
+                checked
+              />
+            </span>
+            <span *ngIf="isVacc('Hexavalente', singleDog.vaccines) == false">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChHe{{ singleDog.id }}"
+                name="Hexavalente"
+                value="Hexavalente"
+              />
+            </span>
+            <label for="ChHe{{ singleDog.id }}"> Hexavalente</label ><br />
+
+              <span *ngIf="isVacc('Octavalente', singleDog.vaccines) == true">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="ChOc{{ singleDog.id }}"
+                  name="Octavalente"
+                  value="Octavalente"
+                  checked
+                />
+              </span>
+              <span *ngIf="isVacc('Octavalente', singleDog.vaccines) == false">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="ChOc{{ singleDog.id }}"
+                  name="Octavalente"
+                  value="Octavalente"
+                />
+              </span>
+              <label for="ChOc{{ singleDog.id }}"> Octavalente</label ><br />
+           <br />
+          </form>
+        </div>
+      </div>
+
+      <div class="row row-inputs">
+        <div class="form-group col-12 col-sm-6">
+          <div *ngIf="singleDog.sex === 'H'">
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckChecked"
+              style="justify-content: center"
+              >Sexo Actual: Hembra</label
+            >
+          </div>
+          <div *ngIf="singleDog.sex === 'M'">
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckChecked"
+              style="justify-content: center"
+              >Sexo Actual: Macho</label
+            >
+          </div>
+
+          <br />
+          <div class="radio input-container">
+            <label>
+              <span *ngIf="singleDog.sex === 'M'">
+                <input
+                  type="radio"
+                  formControlName="sex"
+                  name="sex"
+                  value="M"
+                  checked
+                />
+              </span>
+              <span *ngIf="singleDog.sex === 'H'">
+                <input
+                  type="radio"
+                  formControlName="sex"
+                  name="sex"
+                  value="M"
+                />
+              </span>
+              <span> Macho </span>
+            </label>
+            <br />
+            <label>
+              <span *ngIf="singleDog.sex === 'H'">
+                <input
+                  type="radio"
+                  formControlName="sex"
+                  name="sex"
+                  value="H"
+                  checked
+                />
+              </span>
+              <span *ngIf="singleDog.sex === 'M'">
+                <input
+                  type="radio"
+                  formControlName="sex"
+                  name="sex"
+                  value="H"
+                />
+              </span>
+              <span> Hembra</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          Edad
+          <div for="edad-form" formGroupName="age" class="row input-container">
+            <div class="col-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="{{ roundYear(singleDog.age / 12) }}"
+                value="{{ singleDog.age / 12 }}"
+                id="edad-años"
+                formControlName="years"
+                name="years"
+              />
+              <div
+                *ngIf="
+                  formModel.get('age')?.get('years')?.invalid &&
+                  formModel.get('age')?.get('years')?.errors &&
+                  (formModel.get('age')?.get('years')?.dirty ||
+                    formModel.get('age')?.get('years')?.touched)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    !formModel.get('age')?.get('years')?.hasError('ControlYear')
+                  "
+                >
+                  Año inválido
+                </small>
+              </div>
+            </div>
+            <div class="col-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="{{ singleDog.age % 12 }}"
+                value="{{ singleDog.age % 12 }}"
+                id="edad-meses"
+                formControlName="months"
+                name="months"
+              />
+              <div
+                *ngIf="
+                  formModel.get('age')?.get('months')?.invalid &&
+                  formModel.get('age')?.get('months')?.errors &&
+                  (formModel.get('age')?.get('months')?.dirty ||
+                    formModel.get('age')?.get('months')?.touched)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    !formModel
+                      .get('age')
+                      ?.get('months')
+                      ?.hasError('ControlMonth')
+                  "
+                >
+                  Mes inválido
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-inputs">
+        <div class="form-group form-check form-switch col-12 col-sm-6">
+          <label for="Esterlización">Esterilización</label>
+          <div
+            class="form-group form-check form-switch input-container"
+            style="padding-left: 30px"
+          >
+            <span *ngIf="singleDog.sterilization">
+              <input
+                type="checkbox"
+                id="ChE{{ singleDog.id }}"
+                name="sterilization"
+                value="sterilization"
+                checked
+              />
+            </span>
+            <span *ngIf="singleDog.sterilization == false">
+              <input
+                type="checkbox"
+                id="ChE{{ singleDog.id }}"
+                name="sterilization"
+                value="sterilization"
+              />
+            </span>
+            <label
+              class="form-check-label"
+              for="ChE{{ singleDog.id }}"
+              style="margin-left: 11px"
+            >
+              Esterilizado</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6">
+          <label for="Adoptado">Estado Mascota</label>
+          <div
+            class="form-group form-check form-switch col-12 input-container"
+            style="padding-left: 30px"
+          >
+            <span *ngIf="singleDog.isAdopted">
+              <input
+                type="checkbox"
+                id="ChAdp{{ singleDog.id }}"
+                name="IsAdopted"
+                value="IsAdopted"
+                checked
+              />
+            </span>
+            <span *ngIf="singleDog.isAdopted == false">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="ChAdp{{ singleDog.id }}"
+                name="IsAdopted"
+                value="IsAdopted"
+              />
+            </span>
+            <label class="form-check-label" for="ChAdp{{ singleDog.id }}">
+              Mascota adoptada</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 drop-image img">
+        <app-image-upload [view]="this"></app-image-upload>
+      </div>
+
+      <div class="row row-inputs" style="margin-top: 20px">
+        <button
+          [routerLink]="['/mascotasAd']"
+          class="btn btn-secondary"
+          style="margin-right: 5%"
+          id="añadir"
+        >
+          <span class="glyphicon glyphicon-search"></span> Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="background-color: brown; margin-left: 5%; border: none"
+          id="añadir"
+        >
+          <span class="glyphicon glyphicon-search"></span> Editar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-modal-message></app-modal-message>

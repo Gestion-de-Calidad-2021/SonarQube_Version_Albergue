@@ -1,0 +1,98 @@
+<header>
+  <div class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <div class="logo_container row">
+        <img class="logo" src="../../../assets/logo-SR.png" alt="" />
+        <a class="navbar-brand menu mr-auto" href="#">
+          <span style="font-size: 0.8rem">Defensores de Animales</span> <br />
+          San Roque
+        </a>
+      </div>
+      <div class="nav_bar_container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="icon ion-md-menu icono"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a
+              class="nav-link nav-item menu active"
+              *ngIf="isUserAuthenticated() == false"
+              aria-current="page"
+              [routerLink]="['/']"
+              >Inicio</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == false"
+              [routerLink]="['/mascotas']"
+              >Adopciones</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == false"
+              [routerLink]="['/petShop']"
+              >Productos</a
+            >
+
+            <a
+              class="nav-link nav-item menu active"
+              *ngIf="isUserAuthenticated() == true"
+              aria-current="page"
+              [routerLink]="['/noticeAdm']"
+              >Inicio</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == true"
+              [routerLink]="['/mascotasAd']"
+              >Adopciones</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == true"
+              aria-current="page"
+              [routerLink]="['/petShopAdm']"
+              >Productos</a
+            >
+
+            <a class="nav-link nav-item menu" [routerLink]="['/volunteers']"
+              >Voluntarios</a
+            >
+            <a class="nav-link nav-item menu" [routerLink]="['/nosotros']"
+              >Nosotros</a
+            >
+
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == false"
+              [routerLink]="['/login']"
+              >Iniciar Sesion</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == true"
+              [routerLink]="['/cambiarContraseña']"
+              >Cambiar Contraseña</a
+            >
+            <a
+              class="nav-link nav-item menu"
+              *ngIf="isUserAuthenticated() == true"
+              (click)="logout()"
+              [routerLink]="['/']"
+              >Cerrar Sesion</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<br /><br />

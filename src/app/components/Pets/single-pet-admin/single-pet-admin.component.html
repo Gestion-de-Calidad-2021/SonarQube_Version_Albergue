@@ -1,0 +1,111 @@
+<h2 class="nombre-tit" style="text-transform: capitalize">
+  {{ singleDog.name }}
+</h2>
+<br />
+<div class="cont-img-nombre">
+  <img src="{{ singleDog.photo }}" class="img-SP" alt="" />
+</div>
+<div class="cont-info">
+  <div class="row info-info">
+    <div class="col-sm-4 col-4 info-izq">
+      <p>Adoptado:</p>
+      <p>Sexo:</p>
+      <p>Edad:</p>
+      <p>Tamaño:</p>
+      <p>Esterilizado:</p>
+      <p>Vacunas:</p>
+      <p for="test">Descripcion</p>
+    </div>
+    <div class="col-sm-7 col-7 info-der">
+      <p *ngIf="singleDog.isAdopted == true">Si</p>
+      <p *ngIf="singleDog.isAdopted == false">No</p>
+
+      <p *ngIf="singleDog.sex == 'H'">Hembra</p>
+      <p *ngIf="singleDog.sex == 'M'">Macho</p>
+
+      <p *ngIf="singleDog.age < 12 && singleDog.age > 1">
+        {{ singleDog.age }} Meses
+      </p>
+      <p *ngIf="singleDog.age == 1">{{ singleDog.age }} Mes</p>
+      <p *ngIf="singleDog.age / 12 == 1">{{ singleDog.age / 12 }} año</p>
+      <p *ngIf="singleDog.age % 12 == 0 && singleDog.age / 12 != 1">
+        {{ singleDog.age / 12 }} años
+      </p>
+      <p
+        *ngIf="
+          singleDog.age > 12 && singleDog.age < 24 && singleDog.age % 12 == 1
+        "
+      >
+        {{ singleDog.age / 12 | number: "1.0-0" }} año y
+        {{ singleDog.age % 12 }} Mes
+      </p>
+      <p
+        *ngIf="
+          singleDog.age > 12 && singleDog.age < 24 && singleDog.age % 12 > 1
+        "
+      >
+        {{ roundYear(singleDog.age / 12) }} año y {{ singleDog.age % 12 }} Meses
+      </p>
+      <p *ngIf="singleDog.age > 24 && singleDog.age % 12 == 1">
+        {{ singleDog.age / 12 | number: "1.0-0" }} años y
+        {{ singleDog.age % 12 }} Mes
+      </p>
+      <p *ngIf="singleDog.age > 24 && singleDog.age % 12 > 1">
+        {{ roundYear(singleDog.age / 12) }} años y
+        {{ singleDog.age % 12 }} Meses
+      </p>
+
+      <p>{{ singleDog.size }}</p>
+
+      <p *ngIf="singleDog.sterilization == true">Si</p>
+      <p *ngIf="singleDog.sterilization == false">No</p>
+
+      <p *ngIf="singleDog.vaccines.length > 14">
+        {{ singleDog.vaccines ? singleDog.vaccines : "ninguna vacuna." }}
+      </p>
+      <p *ngIf="singleDog.vaccines.length <= 14">
+        {{ singleDog.vaccines ? singleDog.vaccines : "ninguna vacuna." }}
+      </p>
+      <p class="desc" id="test">{{ singleDog.description }}</p>
+    </div>
+  </div>
+  <div style="text-align: center; padding-bottom: 30px">
+    <button
+      class="btn"
+      style="background-color: #84141b; color: white"
+      routerLink="/editPet/{{ singleDog.id }}"
+    >
+      Editar
+    </button>
+    <button
+      class="btn"
+      style="background-color: #84141b; color: white; margin: 0px 10px"
+      (click)="confirm_modal()"
+      routerLink="/mascotasAd;"
+    >
+      Eliminar
+    </button>
+  </div>
+</div>
+<div class="row btns">
+  <div class="col-1"></div>
+  <div class="col-5 btn">
+    <button
+      *ngIf="isPrevious"
+      class="btn btn-secondary"
+      (click)="getAnterior()"
+    >
+      &lt;&lt; Anterior
+    </button>
+  </div>
+
+  <div class="col-5 btn">
+    <button *ngIf="isNext" class="btn btn-secondary" (click)="getSiguiente()">
+      Siguiente &gt;&gt;
+    </button>
+  </div>
+  <div class="col-1"></div>
+</div>
+<br /><br /><br />
+
+<app-modal-message></app-modal-message>

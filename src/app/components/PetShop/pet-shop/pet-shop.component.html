@@ -1,0 +1,172 @@
+<div class="row">
+  <div class="col-md-2" style="padding-right: 0">
+    
+  </div>
+  <div
+    class="col-md-8 title"
+    style="font-size: 35px; padding-left: 0; color: brown; text-align: center"
+  >
+    Adquiere nuestros productos
+  </div>
+  <div class="col-md-2" style="padding-right: 0"></div>
+</div>
+<br />
+<div class="row all">
+  <div class="col-lg-3 col-12">
+    <p style="text-align: center;">
+      <img src="/assets/PetshopLogo.png" alt="Logo"  style="max-height: 15vw;min-height: 10vw; border-radius: 15px; "/> 
+    </p>
+    
+    <h3 class="title-filt" style=" color: #000000;text-align: center;">
+      Filtros
+    </h3>
+    
+    <form action="filtro" class="filtros" [formGroup]="formModel">
+    
+      <div class="drops" >
+        <select
+          class="dropFiltros"
+          formControlName="sex"
+          name="sex"
+          id="sex"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Sexo de mascota</option>
+          <option value="M">Macho</option>
+          <option class="lastDrpw" value="H">Hembra</option>
+        </select>
+        <select
+          class="dropFiltros"
+          formControlName="size"
+          name="size"
+          id="size"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Tamaño de mascota</option>
+          <option value="pequeño" value="Pequeño">Pequeño</option>
+          <option value="mediano" value="Mediano">Mediano</option>
+          <option class="lastDrpw" value="Grande">Grande</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input
+          type="search"
+          class="form-control"
+          style="width: 65%; display: inline"
+          formControlName="name"
+          name="name"
+          placeholder="Nombre"
+          (change)="filtrar()"
+        />
+        <button style="width: 35%" class="btn btn-light" type="submit">
+          Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="list-cards col-lg-8 col-12 row">
+    <div *ngFor="let product of productsF" class="col-lg-4 col-md-6 col-12">
+      <tr ng-repeat="pet in pets">
+        <div
+          class="card tarjetas indiv-product"
+          style="width: 18rem; position: relative"
+        >
+          <img
+            class="card-img-top"
+            src="{{ product.photo }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 style="text-transform: capitalize">
+              {{ product.productName }}
+            </h5>
+            <p *ngIf="product.sex == 'M'" class="atributes">
+              Sexo de mascota : Macho
+            </p>
+            <p *ngIf="product.sex == 'H'" class="atributes">
+              Sexo de mascota : Hembra
+            </p>
+            <p *ngIf="product.sex == 'A'" class="atributes">
+              Sexo de mascota : Ambos
+            </p>
+            <p class="atributes">Mascota : {{ product.sizeOfPet }}</p>
+            <p class="atributes">Precio : {{ product.price }} Bs.</p>
+          </div>
+          <button
+            class="modal-button"
+            type="button"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="'#product' + product.id.toString()"
+            title="Expandir"
+          >
+            <div class="productbtn">
+              <mat-icon class="expand_icon"> open_with </mat-icon>
+            </div>
+          </button>
+
+          <div
+            class="modal fade"
+            id="product{{ product.id }}"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2 class="modal-title" id="exampleModalLabel">
+                    {{ product.productName }}
+                  </h2>
+                </div>
+                <div class="modal-body">
+                  <img
+                    src="{{ product.photo }}"
+                    alt="image-product-{{ product.productName }}"
+                    style="width: 450px; max-height: 200px"
+                  />
+                  <p *ngIf="product.sex == 'M'" class="atributes">
+                    Sexo de mascota : Macho
+                  </p>
+                  <p *ngIf="product.sex == 'H'" class="atributes">
+                    Sexo de mascota : Hembra
+                  </p>
+                  <p *ngIf="product.sex == 'A'" class="atributes">
+                    Sexo de mascota : Ambos
+                  </p>
+                  <p class="atributes" style="color: black">
+                    Tamaño : {{ product.sizeOfPet }}
+                  </p>
+                  <p class="atributes" style="color: black">
+                    Categoria : {{ product.category }}
+                  </p>
+                  <p class="atributes" style="color: black">
+                    Unidades : {{ product.stock }}
+                  </p>
+                  <p class="atributes" style="color: black">
+                    Precio : {{ product.price }} Bs.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <a
+                    class="btn"
+                    href="https://wa.link/tc805k"
+                    style="background-color: #84141b; color: white"
+                    >Adquiere</a
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+    </div>
+  </div>
+</div>
+<br /><br />

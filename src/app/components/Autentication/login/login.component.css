@@ -1,0 +1,76 @@
+.title {
+  width: 420px;
+  height: auto;
+  margin: 2% auto auto;
+  position: relative;
+  text-align: center;
+}
+.contenedor {
+  width: 420px;
+  height: 480px;
+  margin: 250px auto 2% auto;
+  background-color: #bbbbbb;
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+}
+.img-lg {
+  position: absolute;
+  top: -190px;
+  margin: 0px auto;
+  max-width: 85%;
+}
+.fomulario {
+  margin-top: 140px;
+}
+.btns {
+  background-color: #932a2a;
+  border-radius: 8px;
+  color: white;
+  border: 0px;
+  max-width: 30%;
+  height: 30px;
+  padding: 0px;
+  margin: auto auto;
+}
+.intps {
+  border-radius: 5px;
+  border: 0px;
+  width: 90%;
+  margin: 0px 15px;
+}
+.forget {
+  width: 90%;
+  margin: 1vw 15px;
+  font-size: small;
+  color: blue;
+}
+.forgetPass:hover {
+  color: darkblue;
+}
+#con-btns {
+  margin: 30px 10px 0px 10px;
+}
+@media (max-width: 599px) {
+  .contenedor {
+    max-width: 90%;
+    margin-bottom: 0;
+    border-radius: 5px;
+    margin-top: 150px;
+    max-height: 400px;
+  }
+  .img-lg {
+    max-width: 82%;
+    top: -120px;
+  }
+  .btn {
+    margin-left: 5% !important;
+  }
+  #con-btns {
+    margin: 10px 10px 0px 10px;
+  }
+
+  .title {
+    width: 100%;
+  }
+}

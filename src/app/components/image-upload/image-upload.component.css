@@ -1,0 +1,65 @@
+.area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    border-style: solid; border-radius: 3px; border-color: #E9E9E9;
+}
+
+.image{
+    height: 100px;
+    border: 1px solid #E9E9E9;
+    border-radius: 5px;
+}
+
+.text-inside{
+    width: 80%;
+    height: 80%;
+    border: 1px dashed #6A6868;
+    border-radius: 5px;
+}
+#btn-modal{
+    background-color: black; color: white;
+}
+#btn-modal:hover{
+    cursor: pointer;
+}
+.messageDropArea{
+    color: #828282;
+}
+.messageDropLS{
+    display: block;
+}
+.messageDropSS{
+    display: none;
+}
+
+.custom-file-input{
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+.icon_image{
+    position: relative;
+    width: 25%;
+    min-height: 50px;
+}
+@media (max-width: 576px) {
+.messageDropLS{
+    display: none;
+}
+.messageDropSS{
+    display: block;
+}
+.image{
+    width: 60vw;
+    height: 35vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    border-style: solid; border-radius: 3px; border-color: #E9E9E9;
+}
+}

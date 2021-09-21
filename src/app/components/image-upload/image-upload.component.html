@@ -1,0 +1,25 @@
+<label for="descripcion">Foto</label>
+<div class="area" appImageDrag (files)="filesDropped($event)">
+  <span *ngIf="!dropped" class="text-inside">
+    <div class="messageDropArea">
+      <p class="messageDropLS">Arrastre una imagen aqui</p>
+      <p class="messageDropSS">Pulse en el icono</p>
+      <mat-icon class="expand_icon icon_image" style="font-size: 50px">
+        <input
+          type="file"
+          #file
+          class="custom-file-input"
+          id="validatedCustomFile"
+          (change)="uploadFile(file.files)"
+          required
+        />
+        <p> image </p>
+      </mat-icon>
+    </div>
+  </span>
+  <span *ngIf="dropped" class="text-inside">
+    <div *ngFor="let file of uploadedFiles">
+      <img [src]="file.url" class="image" />
+    </div>
+  </span>
+</div>

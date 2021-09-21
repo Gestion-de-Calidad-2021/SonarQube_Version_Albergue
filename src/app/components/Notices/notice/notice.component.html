@@ -1,0 +1,118 @@
+<div class="container-general">
+  <div class="row banner">
+    <img src="../../../../assets/perros.jpg" alt="banner image" />
+    <div class="banner-info col-12">
+      <div class="banner-text">
+        <div class="title">Adopta un angel, expande tu familia</div>
+        <br />
+        <div class="subtitle">Conoce nuestros animalitos</div>
+        <br />
+        <button class="btn btn-primary" [routerLink]="['/mascotas']">
+          Ver >
+        </button>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="row">
+    <div class="main-sections col-12 col-lg-8">
+      <div class="adoption section row">
+        <b class="title col-12">Adopta</b><br /><br /><br /><br />
+        <p class="col-12 col-sm-6">
+          Abre tu corazón y adopta a un amigo, porque a un amigo no se compra a
+          un amigo se adopta y se lo hace parte de la familia, que esperas para
+          ser parte de la suya.
+        </p>
+        <img
+          class="col-12 col-sm-6"
+          src="../../../assets/Portada4.jpg"
+          alt="adoption image"
+        />
+      </div>
+      <div class="support section row right-alligned">
+        <b class="title col-12">Como ayudar</b><br /><br /><br /><br />
+
+        <img
+          class="col-12 col-sm-6"
+          src="../../../assets/Portada3.jpg"
+          alt="adoption image"
+        />
+
+        <p class="col-12 col-sm-6">
+          Si te gustan los animalitos puedes ser parte de la familia San Roque,
+          siendo padrino o ayudando a conseguir hogares definitivos o abrir tu
+          casa para ser un hogar temporal.
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="list-notice col-12 col-lg-2">
+      <b class="title">Noticias</b>
+      <div class="container-notices">
+        <div *ngFor="let notice of notices">
+          <div class="indiv-notice" style="position: relative">
+            <b>{{ notice.title }}</b
+            ><br />
+
+            <!-- Button trigger modal -->
+            <div [id]="notice.id" class="img-notice">
+              <img
+                src="{{ notice.image }}"
+                alt="image-notice-{{ notice.title }}"
+                class="img-fondo"
+              />
+              <button
+                class="modal-button"
+                type="button"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#notice' + notice.id.toString()"
+                title="Expandir"
+              >
+                <div class="noticebtn">
+                  <mat-icon class="expand_icon"> open_with </mat-icon>
+                </div>
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="notice{{ notice.id }}"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">
+                        {{ notice.title }}
+                      </h2>
+                    </div>
+                    <div class="modal-body">
+                      <img
+                        src="{{ notice.image }}"
+                        alt="image-notice-{{ notice.title }}"
+                        style="width: 500px"
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <b>El dia {{ notice.date | date: "dd/MM/yyyy 'a horas' h:mma" }}</b
+            ><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br />

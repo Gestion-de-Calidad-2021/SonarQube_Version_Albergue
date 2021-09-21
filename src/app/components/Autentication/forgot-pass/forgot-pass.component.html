@@ -1,0 +1,58 @@
+<h1 class="title">Olvidó su contraseña</h1>
+<div class="contenedor">
+  <img class="img-lg" src="../../../assets/img-Login.png" alt="" />
+  <form class="fomulario" [formGroup]="formModel" (ngSubmit)="sendEmail()">
+    <label for="lgUser"
+      >Ingrese su correo registrado para poder recuperar su contraseña, se le
+      enviara un mensaje a su correo</label
+    ><br />
+    <label for="lgUser">Email:</label><br />
+    <input
+      id="Email"
+      formControlName="Email"
+      type="email"
+      [class.is-invalid]="
+        formModel.get('Email')?.touched && formModel.get('Email')?.invalid
+      "
+      class="intps"
+      placeholder="Ingrese su correo"
+      pattern=".+@.+"
+      required
+    /><br />
+    <div
+      style="margin-left: 18px"
+      *ngIf="
+        formModel.get('Email')?.invalid &&
+        formModel.get('Email')?.errors &&
+        (formModel.get('Email')?.dirty || formModel.get('Email')?.touched)
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="
+          formModel.get('Email')?.hasError('required') || !validators.Email
+        "
+      >
+        Campo invalido, ingrese un correo valido.
+      </small>
+    </div>
+    <br />
+    <div class="row" id="con-btns">
+      <button
+        [routerLink]="['/mascotasAd']"
+        class="btn btn-secondary"
+        style="margin-right: 5%; margin-left: 20%"
+      >
+        <span class="glyphicon glyphicon-search"></span> Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="background-color: brown; margin-left: 5%; border: none"
+      >
+        <span class="glyphicon glyphicon-search"></span> Enviar
+      </button>
+    </div>
+  </form>
+</div>
+<app-modal-message></app-modal-message>

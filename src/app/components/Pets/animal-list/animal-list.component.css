@@ -1,0 +1,106 @@
+.subtitulo-vol {
+  margin-top: 15px;
+  color: brown;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.all {
+  margin-bottom: 3%;
+  min-height: 680px;
+}
+.list-cards {
+  background-color: #ece8e8;
+  border-radius: 5px;
+  box-shadow: 0.7rem 0.7rem 4px rgba(147, 42, 42, 0.25);
+}
+.atributes {
+  margin-bottom: 0px;
+}
+.row {
+  margin-right: 0px !important;
+}
+.cardLink {
+  text-decoration: none;
+}
+.card-img-top {
+  max-height: 157px;
+}
+
+.tarjetas {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #828282;
+  color: white;
+  transition: 0.3s;
+}
+.tarjetas:hover {
+  transition: 0.3s;
+  box-shadow: 4px 4px #515151;
+  transform: translate(-4px, -4px);
+}
+
+.filtros {
+  background-color: #dadada;
+  height: 200px;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-left: 40px;
+  margin-top: 15px;
+  max-width: 250px;
+  padding: 3%;
+}
+.drops {
+  border-radius: 5px;
+  background-color: #ffffffe7;
+}
+option {
+  color: #828282;
+}
+.dropFiltros {
+  background-color: #82828200;
+  border-style: none;
+  border-radius: 0;
+  color: #828282;
+  height: 40px;
+  margin: 0;
+  width: 100%;
+  padding: 0 15px;
+}
+.dropFiltros:hover {
+  background-color: #82828223;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+.form-control {
+  border-radius: 5px;
+}
+
+@media (max-width: 599px) {
+  .filtros {
+    max-width: 250px !important;
+  }
+  .esc {
+    margin-left: 50px;
+  }
+}
+@media (max-width: 1024px) {
+  .tarjetas {
+    margin-left: 50px;
+  }
+  .filtros {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 67px;
+    max-width: 400px;
+  }
+  .btnA {
+    margin-top: 15%;
+  }
+  .add {
+    margin-left: 50px;
+    height: 200px;
+  }
+}

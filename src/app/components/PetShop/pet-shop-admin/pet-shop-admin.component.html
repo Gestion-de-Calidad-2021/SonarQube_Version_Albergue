@@ -1,0 +1,566 @@
+<div class="row">
+  <div class="col-md-2" style="padding-right: 0"></div>
+  <div
+    class="col-md-8 title"
+    style="font-size: 35px; padding-left: 0; color: brown; text-align: center"
+  >
+    Adquiere nuestros productos
+  </div>
+  <div class="col-md-2" style="padding-right: 0"></div>
+</div>
+<br />
+<div class="row all">
+  <div class="col-lg-3 col-12">
+    <p style="text-align: center;">
+      <img src="/assets/PetshopLogo.png" alt="Logo"  style="max-height: 15vw;min-height: 10vw; border-radius: 15px; "/> 
+    </p>
+    <h3 class="title-filt" style="text-align: center; color: #000000">
+      Filtros
+    </h3>
+    <form action="filtro" class="filtros" [formGroup]="formModel">
+      <div class="drops">
+        <select
+          class="dropFiltros"
+          formControlName="sexo"
+          name="sexo"
+          id="sexo"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Sexo de mascota</option>
+          <option value="M">Macho</option>
+          <option class="lastDrpw" value="H">Hembra</option>
+        </select>
+        <select
+          class="dropFiltros"
+          formControlName="size"
+          name="size"
+          id="size"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Tamaño de mascota</option>
+          <option value="pequeño" value="Pequeño">Pequeño</option>
+          <option value="mediano" value="Mediano">Mediano</option>
+          <option class="lastDrpw" value="Grande">Grande</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input
+          type="search"
+          style="width: 65%; display: inline"
+          class="form-control"
+          formControlName="name"
+          name="name"
+          placeholder="Nombre"
+          (change)="filtrar()"
+        />
+        <button style="width: 35%" class="btn btn-light" type="submit">
+          Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="list-cards col-lg-8 col-12 row">
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="card add tarjetas" style="width: 280px">
+        <button
+          class="btnAdd"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#adProduct"
+        >
+          <a class="material-icons btnA">add_circle_outline</a><br />
+          <h3 style="color: white">Añadir</h3>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="adProduct"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 5px">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Nuevo producto</h2>
+          </div>
+          <form
+            class="form"
+            action=""
+            [formGroup]="formModel"
+            (ngSubmit)="register()"
+          >
+            <div class="modal-body">
+              <!-- producto -->
+              <label for="nw-tit">Nombre</label>
+              <div
+                *ngIf="
+                  formModel.get('productName')?.invalid &&
+                  formModel.get('productName')?.errors &&
+                  (formModel.get('productName')?.dirty ||
+                    formModel.get('productName')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="formModel.get('productName')?.hasError('required')"
+                >
+                  El nombre del producto es requerido. </small
+                ><br />
+              </div>
+              <input
+                type="text"
+                id="nw-tit"
+                formControlName="productName"
+                name="productName"
+                placeholder="Nombre del producto"
+                required
+              /><br />
+              <!-- sex -->
+              <label class="form-check-label" for="nw-sex">Sexo</label>
+              <select
+                class="btn btn-light"
+                name="sex"
+                id="sex"
+                formControlName="sex"
+                name="sex"
+                style="width: 70%; color: gray"
+              >
+                <option *ngFor="let genero of generos" [value]="genero">
+                  <span>{{ genero }}</span>
+                </option>
+              </select>
+              <!-- photo -->
+              <div class="drop-image" style="color: brown">
+                <app-image-upload [view]="this"></app-image-upload>
+              </div>
+
+              <!-- category -->
+              <label for="nw-cat">Categoria</label>
+              <div
+                *ngIf="
+                  formModel.get('category')?.invalid &&
+                  formModel.get('category')?.errors &&
+                  (formModel.get('category')?.dirty ||
+                    formModel.get('category')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="formModel.get('category')?.hasError('required')"
+                >
+                  La categoria es requerido. </small
+                ><br />
+              </div>
+              <input
+                type="text"
+                id="nw-cat"
+                formControlName="category"
+                name="category"
+                placeholder="Categoria del producto"
+                required
+              /><br />
+              <!-- sizeOfPet -->
+              <label class="form-check-label" for="nw-tam">Tamaño</label>
+              <select
+                class="btn btn-light"
+                name="sizeOfPet"
+                id="sizeOfPet"
+                formControlName="sizeOfPet"
+                name="sizeOfPet"
+                style="width: 70%; color: gray"
+              >
+                <option *ngFor="let size of sizes" [value]="size">
+                  <span>{{ size }}</span>
+                </option>
+              </select>
+              <!--  price-->
+              <label for="nw-pric">Precio</label>
+              <div
+                *ngIf="
+                  formModel.get('price')?.invalid &&
+                  formModel.get('price')?.errors &&
+                  (formModel.get('price')?.dirty ||
+                    formModel.get('price')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="formModel.get('price')?.hasError('required')"
+                >
+                  El precio es requerido. </small
+                ><br />
+              </div>
+              <input
+                type="number"
+                id="nw-pric"
+                formControlName="price"
+                name="price"
+                placeholder="Precio del producto"
+                required
+              /><br />
+              <!--   stock-->
+              <label for="nw-stoc">Cantidad</label>
+              <div
+                *ngIf="
+                  formModel.get('stock')?.invalid &&
+                  formModel.get('stock')?.errors &&
+                  (formModel.get('stock')?.dirty ||
+                    formModel.get('stock')?.touched ||
+                    showAllValidators)
+                "
+              >
+                <small
+                  class="text-danger"
+                  *ngIf="formModel.get('stock')?.hasError('required')"
+                >
+                  La cantidad de productos es requerida. </small
+                ><br />
+              </div>
+              <input
+                type="number"
+                id="nw-stoc"
+                formControlName="stock"
+                name="stock"
+                placeholder="Cantidad de productos"
+                required
+              /><br />
+            </div>
+            <div class="modal-footer">
+              <div id="addMessage"></div>
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="background-color: brown; border: none"
+                id="añadir"
+              >
+                <span class="glyphicon glyphicon-search"></span> Añadir
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div *ngFor="let product of productsF" class="col-lg-4 col-md-6 col-12">
+      <tr ng-repeat="pet in pets">
+        <div class="card tarjetas" style="width: 280px">
+          <img
+            class="card-img-top"
+            src="{{ product.photo }}"
+            alt="Card image cap"
+          />
+          <div class="modal-button">
+            <button
+              class="edit"
+              type="button"
+              data-bs-toggle="modal"
+              [attr.data-bs-target]="'#product' + product.id.toString()"
+            >
+              <div class="edbn">
+                <mat-icon class="expand_icon"> edit </mat-icon>
+              </div>
+            </button>
+            <button
+              class="delete"
+              type="button"
+              data-bs-toggle="modal"
+              [attr.data-bs-target]="'#elimProduct' + product.id.toString()"
+            >
+              <div class="elmtbn">
+                <mat-icon class="expand_icon"> delete </mat-icon>
+              </div>
+            </button>
+          </div>
+
+          <!-- Modal editar -->
+          <div
+            class="modal fade"
+            id="product{{ product.id }}"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content" style="border-radius: 5px">
+                <div class="modal-header">
+                  <h2 class="modal-title" id="exampleModalLabel">
+                    Editar producto
+                  </h2>
+                </div>
+                <form
+                  class="form"
+                  action=""
+                  [formGroup]="formModel"
+                  (ngSubmit)="edit(product.id.toString())"
+                >
+                  <div class="modal-body">
+                    <!--Nombre-->
+                    <label for="edi-tit{{ product.id }}">Nombre</label>
+                    <input
+                      type="text"
+                      id="edi-tit{{ product.id }}"
+                      formControlName="productName"
+                      name="productName"
+                      placeholder="{{ product.productName }}"
+                      required
+                    /><br />
+                    <!--sexo-->
+                    <label
+                      class="form-check-label"
+                      for="edi-sex{{ product.id }}"
+                      >Sexo</label
+                    >
+                    <div *ngIf="product.sex === 'M'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Macho</label
+                      >
+
+                      <select
+                        class="btn btn-light"
+                        name="sex"
+                        id="sex"
+                        formControlName="sex"
+                        name="sex"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="A">Ambos</option>
+                        <option value="M" selected>Macho</option>
+                        <option value="H">Hembra</option>
+                      </select>
+                    </div>
+
+                    <div *ngIf="product.sex === 'A'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Ambos</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sex"
+                        id="sex"
+                        formControlName="sex"
+                        name="sex"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="A" selected>Ambos</option>
+                        <option value="M">Macho</option>
+                        <option value="H">Hembra</option>
+                      </select>
+                    </div>
+
+                    <div *ngIf="product.sex === 'H'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Hembra</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sex"
+                        id="sex"
+                        formControlName="sex"
+                        name="sex"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="A">Ambos</option>
+                        <option value="M">Macho</option>
+                        <option value="H" selected>Hembra</option>
+                      </select>
+                    </div>
+
+                    <div class="drop-image">
+                      <app-image-upload [view]="this"></app-image-upload>
+                    </div>
+
+                    <!--Categoria-->
+                    <label for="edi-cat{{ product.id }}">Categoria</label>
+                    <input
+                      type="text"
+                      id="edi-cat{{ product.id }}"
+                      formControlName="category"
+                      name="category"
+                      placeholder="{{ product.category }}"
+                      required
+                    /><br />
+                    <!--Tamanio-->
+                    <label
+                      class="form-check-label"
+                      for="edi-tam{{ product.id }}"
+                      >Tamaño</label
+                    >
+                    <div *ngIf="product.sizeOfPet === 'Pequeño'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Pequeño</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sizeOfPet"
+                        id="sizeOfPet"
+                        formControlName="sizeOfPet"
+                        name="sizeOfPet"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="Pequeño" selected>Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Cualquiera">Cualquiera</option>
+                      </select>
+                    </div>
+                    <div *ngIf="product.sizeOfPet === 'Mediano'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Mediano</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sizeOfPet"
+                        id="sizeOfPet"
+                        formControlName="sizeOfPet"
+                        name="sizeOfPet"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="Pequeño">Pequeño</option>
+                        <option value="Mediano" selected>Mediano</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Cualquiera">Cualquiera</option>
+                      </select>
+                    </div>
+                    <div *ngIf="product.sizeOfPet === 'Grande'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Grande</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sizeOfPet"
+                        id="sizeOfPet"
+                        formControlName="sizeOfPet"
+                        name="sizeOfPet"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="Pequeño">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande" selected>Grande</option>
+                        <option value="Cualquiera">Cualquiera</option>
+                      </select>
+                    </div>
+                    <div *ngIf="product.sizeOfPet === 'Cualquiera'">
+                      <label class="form-check-label" style="color: #000000"
+                        >Actual: Cualquiera</label
+                      >
+                      <select
+                        class="btn btn-light"
+                        name="sizeOfPet"
+                        id="sizeOfPet"
+                        formControlName="sizeOfPet"
+                        name="sizeOfPet"
+                        style="width: 70%; color: gray"
+                      >
+                        <option value="Pequeño">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Cualquiera" selected>Cualquiera</option>
+                      </select>
+                    </div>
+
+                    <!-- price-->
+                    <label for="edi-pric{{ product.id }}">Precio</label>
+                    <input
+                      type="number"
+                      id="edi-pric{{ product.id }}"
+                      formControlName="price"
+                      name="price"
+                      placeholder="{{ product.price }}"
+                      required
+                    /><br />
+                    <!--  stock-->
+                    <label for="edi-stoc{{ product.id }}">Cantidad</label>
+                    <input
+                      type="number"
+                      id="edi-stoc{{ product.id }}"
+                      formControlName="stock"
+                      name="stock"
+                      placeholder="{{ product.stock }}"
+                      required
+                    /><br />
+                  </div>
+                  <div class="modal-footer">
+                    <div id="editMessage"></div>
+                    <button type="submit" class="btn btn-primary">
+                      Editar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal eliminar -->
+          <div
+            class="modal fade"
+            id="elimProduct{{ product.id }}"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content" style="border-radius: 5px">
+                <div class="modal-header">
+                  <h2 class="modal-title" id="exampleModalLabel">
+                    Eliminar producto
+                  </h2>
+                </div>
+                <div class="modal-body" style="color: black">
+                  Esta a punto de eliminar el producto
+                  <span class="elm-tt">{{ product.productName }}</span
+                  ><br />
+                  ¿Quiere continuar?
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="delete(product.id.toString())"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" style="font-size: 15px">
+            <h5 style="text-transform: capitalize">
+              {{ product.productName }}
+            </h5>
+            <p *ngIf="product.sex == 'M'" class="atributes">
+              Sexo de mascota : Macho
+            </p>
+            <p *ngIf="product.sex == 'H'" class="atributes">
+              Sexo de mascota : Hembra
+            </p>
+            <p *ngIf="product.sex == 'A'" class="atributes">
+              Sexo de mascota : Ambos
+            </p>
+            <p class="atributes">Tamaño : {{ product.sizeOfPet }}</p>
+            <p class="atributes">Precio : {{ product.price }} Bs.</p>
+            <p class="atributes">Categoria : {{ product.category }}</p>
+            <p class="atributes">Cantidad : {{ product.stock }}</p>
+          </div>
+        </div>
+      </tr>
+    </div>
+  </div>
+</div>
+<br /><br />

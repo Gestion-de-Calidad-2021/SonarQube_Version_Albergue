@@ -1,0 +1,50 @@
+header {
+  width: 95%;
+  margin-top: 20px;
+}
+.navbar {
+  background-color: #932a2a;
+  margin-right: 10px;
+
+  box-shadow: 10px 10px 5px 0px #a76a6ace;
+  border-radius: 0px 5px 5px 0px;
+}
+.nav-item:hover {
+  color: #ff6767;
+}
+.icono {
+  color: white;
+  font-size: 35px;
+}
+
+.menu {
+  color: white;
+  text-decoration: none;
+  margin-left: 1vw;
+}
+
+.logo {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px 10px;
+  margin-left: 10px;
+}
+
+.container-fluid {
+  display: flex;
+}
+
+.navbar-nav {
+  float: right;
+}
+
+@media (max-width: 576px) {
+  .logo {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .menu {
+    font-size: 15px;
+  }
+}

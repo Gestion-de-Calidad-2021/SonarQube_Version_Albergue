@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-md-3" style="padding-right: 0"></div>
+  <div class="col-md-8 esc" style="font-size: 35px; padding-left: 0">
+    Escoge tu compañero
+  </div>
+</div>
+<br />
+<div class="row all">
+  <div class="col-lg-3 col-12">
+    <h3 style="margin-left: 60px; color: #000000">Filtros</h3>
+    <form action="filtro" class="filtros" [formGroup]="formModel">
+      <div class="drops">
+        <select
+          class="dropFiltros"
+          formControlName="sex"
+          name="sex"
+          id="sex"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Sexo</option>
+          <option value="M">Macho</option>
+          <option class="lastDrpw" value="H">Hembra</option>
+        </select>
+        <select
+          class="dropFiltros"
+          formControlName="age"
+          name="age"
+          id="age"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Edad</option>
+          <option value="0-12">De 0 a 1 año</option>
+          <option value="12-36">De 1 a 3 años</option>
+          <option value="36-60">De 3 a 6 años</option>
+          <option value="60-120">De 5 a 10 años</option>
+          <option class="lastDrpw" value="120-1000">Mayores de 10 años</option>
+        </select>
+        <select
+          class="dropFiltros"
+          formControlName="size"
+          name="size"
+          id="size"
+          (change)="filtrar()"
+        >
+          <option class="firstDrpw" value="">Tamaño</option>
+          <option value="pequeño" value="Pequeño">Pequeño</option>
+          <option value="mediano" value="Mediano">Mediano</option>
+          <option class="lastDrpw" value="Grande">Grande</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input
+          type="search"
+          class="form-control"
+          formControlName="name"
+          name="name"
+          placeholder="Nombre"
+          (change)="filtrar()"
+        />
+      </div>
+    </form>
+  </div>
+  <div class="list-cards col-lg-8 col-12 row">
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="card add tarjetas" style="width: 18rem">
+        <a class="material-icons btnA" routerLink="/añadirMascota"
+          >add_circle_outline</a
+        ><br />
+        <h3>Añadir</h3>
+      </div>
+    </div>
+
+    <div *ngFor="let dog of dogsF" class="col-lg-4 col-md-6 col-12">
+      <a routerLink="/mascotasAd/{{ dog.id }}" class="cardLink">
+        <div class="card tarjetas" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="{{ dog.photo }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 style="text-transform: capitalize">{{ dog.name }}</h5>
+
+            <p *ngIf="dog.age < 12 && dog.age > 1" class="atributes">
+              Edad : {{ dog.age }} Meses
+            </p>
+            <p *ngIf="dog.age == 1" class="atributes">
+              Edad : {{ dog.age }} Mes
+            </p>
+            <p *ngIf="dog.age / 12 == 1" class="atributes">
+              Edad : {{ dog.age / 12 }} año
+            </p>
+            <p *ngIf="dog.age % 12 == 0 && dog.age / 12 != 1" class="atributes">
+              Edad : {{ dog.age / 12 }} años
+            </p>
+            <p
+              *ngIf="dog.age > 12 && dog.age < 24 && dog.age % 12 == 1"
+              class="atributes"
+            >
+              Edad : {{ dog.age / 12 | number: "1.0-0" }} año y
+              {{ dog.age % 12 }} Mes
+            </p>
+            <p
+              *ngIf="dog.age > 12 && dog.age < 24 && dog.age % 12 > 1"
+              class="atributes"
+            >
+              Edad : {{ roundYear(dog.age / 12) }} año y
+              {{ dog.age % 12 }} Meses
+            </p>
+            <p *ngIf="dog.age > 24 && dog.age % 12 == 1" class="atributes">
+              Edad : {{ dog.age / 12 | number: "1.0-0" }} años y
+              {{ dog.age % 12 }} Mes
+            </p>
+            <p *ngIf="dog.age > 24 && dog.age % 12 > 1" class="atributes">
+              Edad : {{ roundYear(dog.age / 12) }} años y
+              {{ dog.age % 12 }} Meses
+            </p>
+
+            <p *ngIf="dog.sex == 'M'; else hembra" class="atributes">
+              Sexo : Macho
+            </p>
+            <ng-template #hembra>
+              <p class="atributes">Sexo : Hembra</p>
+            </ng-template>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<br /><br />
