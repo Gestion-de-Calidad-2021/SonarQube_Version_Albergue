@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./volunteers.component.css'],
 })
 export class VolunteersComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
   public inpageLink() {
     document.getElementById('volunteersblock')?.scrollIntoView();
   }
