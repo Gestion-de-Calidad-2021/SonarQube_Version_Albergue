@@ -2,5 +2,5 @@ projectKey=ProyectoAlbergue
 serverUrl=http://localhost:9000
 serverVersion=9.0.1.46107
 dashboardUrl=http://localhost:9000/dashboard?id=ProyectoAlbergue
-ceTaskId=AXwSo7dig_QTAzvIfFcf
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXwSo7dig_QTAzvIfFcf
+ceTaskId=AXwSpj6og_QTAzvIfFcg
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXwSpj6og_QTAzvIfFcg
