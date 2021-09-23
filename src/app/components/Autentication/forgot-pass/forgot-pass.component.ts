@@ -107,7 +107,9 @@ export class ForgotPassComponent implements OnInit {
 
       //Enviar Mail
       this.authService.sendEmail(this.formModel.value.Email, newPAss).subscribe(
-        () => {},
+        () => {
+          //this is intentional
+        },
         (err) => {
           this.invalidLogin = true;
           this.show_modal('La contraseña no se pudo cambiar.');
