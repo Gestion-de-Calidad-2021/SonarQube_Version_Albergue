@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
     });
     this.showAllValidators = false;
   }
-  ngOnInit(): void {}
-
   login() {
     var input!: any;
     input = document.getElementById('Email');
