@@ -24,8 +24,6 @@ export class ChangePassComponent implements OnInit {
       ConfirmPassword: ['', Validators.required],
     });
   }
-  ngOnInit(): void {}
-
   change() {
     var input!: any;
     input = document.getElementById('ConfirmPassword');
