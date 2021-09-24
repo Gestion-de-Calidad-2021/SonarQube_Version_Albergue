@@ -49,3 +49,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# SonarQube
+.scannerwork
+sonar-project.properties
