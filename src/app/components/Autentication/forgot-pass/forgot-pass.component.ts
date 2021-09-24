@@ -65,11 +65,11 @@ export class ForgotPassComponent implements OnInit {
     for (let i = 0; i < length; i++) {
       if (type == 'rand') {
         pass += String.fromCharCode(
-          (Math.floor(Math.random() * 100) % 94) + 33
+          (Math.floor(this.getPseudorandomNumber() * 100) % 94) + 33
         );
       } else {
         pass += this.characters.charAt(
-          Math.floor(Math.random() * this.characters.length)
+          Math.floor(this.getPseudorandomNumber() * this.characters.length)
         );
       }
     }
@@ -131,5 +131,12 @@ export class ForgotPassComponent implements OnInit {
       btns: false,
     };
     this.modal.show_modal(params);
+  }
+
+  getPseudorandomNumber(){
+    const crypto = window.crypto;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array); // Compliant for security-sensitive use cases
+    return array[0];
   }
 }
