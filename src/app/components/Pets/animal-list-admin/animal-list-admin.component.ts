@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dog } from 'src/app/models/Dog';
 import { DogService } from 'src/app/Services/Dog/dog-service.service';
-import {
-  FormGroup,
-  FormBuilder,
-} from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
@@ -71,15 +68,12 @@ export class AnimalListAdminComponent implements OnInit {
     return Math.trunc(num);
   }
   private getDogs() {
-    if (
-      this.dogService.getDogs().subscribe((dog) => {
-        dog.sort(function (a, b) {
-          return a.age - b.age;
-        });
-        this.dogs = dog;
-        this.dogsF = dog;
-      }) == null
-    ) {
-    }
+    this.dogService.getDogs().subscribe((dog) => {
+      dog.sort(function (a, b) {
+        return a.age - b.age;
+      });
+      this.dogs = dog;
+      this.dogsF = dog;
+    });
   }
 }
