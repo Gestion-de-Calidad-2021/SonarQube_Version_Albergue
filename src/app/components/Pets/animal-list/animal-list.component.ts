@@ -54,7 +54,6 @@ export class AnimalListComponent implements OnInit {
     return Math.trunc(num);
   }
   private getDogs() {
-    if (
       this.dogService.getDogs().subscribe((dog) => {
         dog.sort(function (a, b) {
           return a.age - b.age;
@@ -62,8 +61,6 @@ export class AnimalListComponent implements OnInit {
         dog = dog.filter((d) => !d.isAdopted);
         this.dogs = dog;
         this.dogsF = dog;
-      }) == null
-    ) {
-    }
+      }) 
   }
 }
