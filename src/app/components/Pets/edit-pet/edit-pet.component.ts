@@ -159,8 +159,8 @@ export class EditPetComponent implements OnInit {
     }
   }
   private editSingleDog(dog: any) {
-    this.dogService.updateDog(this.mascotaID, dog).subscribe((dog) => {
-      this.singleDog = dog;
+    this.dogService.updateDog(this.mascotaID, dog).subscribe((dog2) => {
+      this.singleDog = dog2;
       this.singleDog.id = this.mascotaID;
     });
   }

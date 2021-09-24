@@ -35,21 +35,20 @@ export class LoginComponent implements OnInit {
     this.showAllValidators = false;
   }
   login() {
-    var input!: any;
-    input = document.getElementById('Email');
+    document.getElementById('Email');
     if (this.formModel.invalid) {
       this.show_modal('Corriga los campos porfavor');
       this.showAllValidators = true;
 
       return;
     }
-    let va = this.authService.login(this.formModel.value).subscribe(
+    this.authService.login(this.formModel.value).subscribe(
       (res) => {
         const token = (<any>res).message;
         localStorage.setItem('jwt', token);
         this.invalidLogin = false;
       },
-      (err) => {
+      () => {
         this.invalidLogin = true;
         this.show_modal('El correo o la contraseña son invalidos.');
       },

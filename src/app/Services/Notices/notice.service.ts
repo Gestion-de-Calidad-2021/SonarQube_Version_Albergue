@@ -37,7 +37,7 @@ export class NoticeService {
     return this.http.get<Notice[]>(this.noticeUrl);
   }
   updateNotice(num: string, notice: any): Observable<any> {
-    let noticeSend = JSON.stringify(notice);
+    
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,

@@ -38,7 +38,6 @@ export class PetShopService {
   }
 
   updateItemPS(num: string, itemPS: any): Observable<any> {
-    let itemSend = JSON.stringify(itemPS);
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,

@@ -31,16 +31,7 @@ export class ImageDragDirective {
     evt.stopPropagation();
     this.background = '#eeee';    
     let files: FileHandle[] = [];
-    // var data_transfer = evt.dataTransfer ? evt.dataTransfer : new DataTransfer();
-    // for (let i = 0; i < data_transfer.files.length; i++) {
-    //   const file = data_transfer.files[i];
-    //   var url = '';
-    //   //const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
-    //   files.push({
-    //     file,
-    //     url,
-    //   });
-    // }
+
     for (let i = 0; i < evt.dataTransfer!.files.length; i++) {
       const file = evt.dataTransfer!.files[i];
       const url = this.sanitizer.bypass(

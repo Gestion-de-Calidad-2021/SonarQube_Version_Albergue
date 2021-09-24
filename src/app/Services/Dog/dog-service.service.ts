@@ -40,7 +40,6 @@ export class DogService {
     return this.http.get<Dog>(`${this.dogsUrl}/${num}`);
   }
   updateDog(num: string, dog: any): Observable<any> {
-    let dogSend = JSON.stringify(dog);
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,

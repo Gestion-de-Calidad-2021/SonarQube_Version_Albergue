@@ -12,7 +12,7 @@
 .list-cards {
   background-color: #ece8e8;
   border-radius: 5px;
-  box-shadow: 5px 5px #999999;
+  box-shadow: 0.7rem 0.7rem 4px rgba(147, 42, 42, 0.25);
 }
 .atributes {
   margin-bottom: 0px;
@@ -36,11 +36,7 @@
   max-width: 286px;
   overflow: hidden;
 }
-.list-cards {
-  background-color: #ece8e8;
-  border-radius: 5px;
-  box-shadow: 0.7rem 0.7rem 4px rgba(147, 42, 42, 0.25);
-}
+
 .modal-button {
   background: rgba(218, 218, 218, 0.01);
   border-style: none;
