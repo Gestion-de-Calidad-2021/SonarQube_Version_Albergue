@@ -44,7 +44,7 @@ export class SinglePetAdminComponent implements OnInit {
   }
   public deletePet() {
     var actual_url = this.singleDog.photo.substring(24);
-    this.dogService.deletePhoto(actual_url).subscribe((data) => {});
+    this.dogService.deletePhoto(actual_url);
     this.dogService.deleteDog(this.mascotaID).subscribe((answer) => {
       this.IsDeleted = answer;
     });

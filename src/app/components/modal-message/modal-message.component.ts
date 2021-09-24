@@ -13,9 +13,7 @@ export class ModalMessageComponent implements OnInit {
   btn_cancel!: any;
   link_redirect = '';
 
-  constructor() {}
 
-  ngOnInit(): void {}
   hide_modal_from_outside(event: any) {
     if (event.target == this.modal) {
       this.modal.style.display = 'none';
