@@ -25,8 +25,7 @@ export class ChangePassComponent implements OnInit {
     });
   }
   change() {
-    var input!: any;
-    input = document.getElementById('ConfirmPassword');
+  
     if (
       this.formModel.invalid ||
       this.formModel.value.ConfirmPassword != this.formModel.value.Password
@@ -41,13 +40,13 @@ export class ChangePassComponent implements OnInit {
         return;
       }
     }
-    let va = this.authService
+    this.authService
       .changePassword(this.formModel.value.Password)
       .subscribe(
-        (res) => {
-          const mes = (<any>res).message;
+        () => {
+          //this is intentional;
         },
-        (err) => {
+        () => {
           this.invalidLogin = true;
           this.show_modal('La contraseña no se pudo cambiar.');
         },
