@@ -75,7 +75,7 @@ export class NoticeAdminComponent implements OnInit {
       image: photo_url,
       date: this.formModel.value.date,
     };
-    this.noticeService.postNotice(noticeToSend).subscribe((notice) => {});
+    this.noticeService.postNotice(noticeToSend);
     this.image_dropped = false;
     var message = document.getElementById('addMessage');
     message ? (message.innerHTML = 'Se ha añadido la noticia.') : message;
@@ -89,7 +89,7 @@ export class NoticeAdminComponent implements OnInit {
       });
       singleNotice = singleNotice ? singleNotice : new Notice();
       var actual_url = singleNotice.image.substring(27);
-      this.noticeService.deletePhoto(actual_url).subscribe((data) => {});
+      this.noticeService.deletePhoto(actual_url);
       photo_url = await this.noticeService.postPhoto(this.image).toPromise();
       photo_url = `${environment.noticeUrl}${photo_url}`;
     }
@@ -101,8 +101,7 @@ export class NoticeAdminComponent implements OnInit {
     };
     this.image_dropped = false;
     this.noticeService
-      .updateNotice(id, noticeToSend)
-      .subscribe((updatedNotice) => {});
+      .updateNotice(id, noticeToSend);
     var message = document.getElementById('editMessage');
     message ? (message.innerHTML = 'Se ha editado la noticia.') : message;
     window.location.href = '/noticeAdm';
@@ -113,8 +112,8 @@ export class NoticeAdminComponent implements OnInit {
     });
     singleNotice = singleNotice ? singleNotice : new Notice();
     var actual_url = singleNotice.image.substring(27);
-    this.noticeService.deletePhoto(actual_url).subscribe((data) => {});
-    this.noticeService.deleteNotice(id).subscribe((answer) => {});
+    this.noticeService.deletePhoto(actual_url);
+    this.noticeService.deleteNotice(id);
     window.location.href = '/noticeAdm';
   }
 }

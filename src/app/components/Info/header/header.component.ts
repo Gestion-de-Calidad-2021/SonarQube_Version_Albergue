@@ -9,7 +9,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class HeaderComponent implements OnInit {
   constructor(private jwtHelper: JwtHelperService) {}
 
-  ngOnInit(): void {}
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
@@ -22,5 +21,5 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
-  isonThisPAge() {}
+
 }

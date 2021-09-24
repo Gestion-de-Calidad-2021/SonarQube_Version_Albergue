@@ -20,7 +20,6 @@ export class PetShopService {
       responseType: 'text' as 'json',
     };
     var url = `${this.petShopUrl}/photo`;
-    formData.forEach((value, key) => {});
     return this.http.post<string>(url, formData, options);
   }
   deletePhoto(path: string) {

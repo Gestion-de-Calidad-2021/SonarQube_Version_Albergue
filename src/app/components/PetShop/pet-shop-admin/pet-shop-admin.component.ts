@@ -118,7 +118,7 @@ export class PetShopAdminComponent implements OnInit {
       price: this.formModel.value.price.toString(),
       stock: this.formModel.value.stock,
     };
-    this.petShopService.postItemPS(productToSend).subscribe((product) => {});
+    this.petShopService.postItemPS(productToSend);
     this.image_dropped = false;
     var message = document.getElementById('addMessage');
     message ? (message.innerHTML = 'Se ha añadido el producto.') : message;
@@ -133,7 +133,7 @@ export class PetShopAdminComponent implements OnInit {
       });
       singleProduct = singleProduct ? singleProduct : new PetShop();
       var actual_url = singleProduct.photo.substring(29);
-      this.petShopService.deletePhoto(actual_url).subscribe((data) => {});
+      this.petShopService.deletePhoto(actual_url);
       photo_url = await this.petShopService.postPhoto(this.image).toPromise();
       photo_url = `${environment.ImportPhotoProducts}${photo_url}`;
     }
@@ -155,8 +155,7 @@ export class PetShopAdminComponent implements OnInit {
     };
     this.image_dropped = false;
     this.petShopService
-      .updateItemPS(id, productToSend)
-      .subscribe(() => {});
+      .updateItemPS(id, productToSend);
     var message = document.getElementById('editMessage');
     message ? (message.innerHTML = 'Se ha editado el producto.') : message;
     window.location.href = '/petShopAdm';
@@ -168,8 +167,8 @@ export class PetShopAdminComponent implements OnInit {
     });
     singleProduct = singleProduct ? singleProduct : new PetShop();
     var actual_url = singleProduct.photo.substring(29);
-    this.petShopService.deletePhoto(actual_url).subscribe(() => {});
-    this.petShopService.deleteItem(id).subscribe(() => {});
+    this.petShopService.deletePhoto(actual_url);
+    this.petShopService.deleteItem(id);
     window.location.href = '/petShopAdm';
   }
 }

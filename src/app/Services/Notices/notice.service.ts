@@ -20,7 +20,6 @@ export class NoticeService {
       responseType: 'text' as 'json',
     };
     var url = `${this.noticeUrl}/photo`;
-    formData.forEach((value, key) => {});
     return this.http.post<string>(url, formData, options);
   }
   deletePhoto(path: string) {
