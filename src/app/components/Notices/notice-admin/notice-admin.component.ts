@@ -48,14 +48,13 @@ export class NoticeAdminComponent implements OnInit {
       return false;
     }
   }
+
   ngOnInit(): void {
-    if (
-      this.noticeService.getNotice().subscribe((notice) => {
-        this.notices = notice;
-      }) == null
-    ) {
-    }
+    this.noticeService.getNotice().subscribe((notice) => {
+      this.notices = notice;
+    });
   }
+
   setimageFile(image_: File) {
     this.image = image_;
     this.image_dropped = true;
@@ -78,8 +77,7 @@ export class NoticeAdminComponent implements OnInit {
     this.noticeService.postNotice(noticeToSend);
     this.image_dropped = false;
     var message = document.getElementById('addMessage');
-    if(message != null)
-      message.innerHTML = 'Se ha añadido la noticia.';
+    if (message != null) message.innerHTML = 'Se ha añadido la noticia.';
     window.location.href = '/noticeAdm';
   }
   public async edit(id: string) {
@@ -101,11 +99,9 @@ export class NoticeAdminComponent implements OnInit {
         .value,
     };
     this.image_dropped = false;
-    this.noticeService
-      .updateNotice(id, noticeToSend);
+    this.noticeService.updateNotice(id, noticeToSend);
     var message = document.getElementById('editMessage');
-    if (message != null)
-      message.innerHTML = 'Se ha editado la noticia.';
+    if (message != null) message.innerHTML = 'Se ha editado la noticia.';
     window.location.href = '/noticeAdm';
   }
   public delete(id: string) {
