@@ -77,9 +77,9 @@ export class ForgotPassComponent implements OnInit {
   }
 
   sendEmail() {
-    var input!: any;
+    
     let existeusuario = false;
-    input = document.getElementById('Email');
+    document.getElementById('Email');
     if (this.formModel.invalid) {
       this.show_modal('Corriga los campos porfavor');
       this.showAllValidators = true;
@@ -95,11 +95,11 @@ export class ForgotPassComponent implements OnInit {
     if (existeusuario) {
       //Change Password
       var newPAss = this.generatePasswordRand(10, 'rand') + 'A' + '4';
-      let va = this.authService.changePassword(newPAss).subscribe(
-        (res) => {
-          const mes = (<any>res).message;
+      this.authService.changePassword(newPAss).subscribe(
+        () => {
+          //this is intentional
         },
-        (err) => {
+        () => {
           this.invalidLogin = true;
           this.show_modal('La contraseña no se pudo cambiar.');
         }
@@ -110,7 +110,7 @@ export class ForgotPassComponent implements OnInit {
         () => {
           //this is intentional
         },
-        (err) => {
+        () => {
           this.invalidLogin = true;
           this.show_modal('La contraseña no se pudo cambiar.');
         },
