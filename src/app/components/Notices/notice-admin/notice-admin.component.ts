@@ -78,7 +78,8 @@ export class NoticeAdminComponent implements OnInit {
     this.noticeService.postNotice(noticeToSend);
     this.image_dropped = false;
     var message = document.getElementById('addMessage');
-    message ? (message.innerHTML = 'Se ha añadido la noticia.') : message;
+    if(message != null)
+      message.innerHTML = 'Se ha añadido la noticia.';
     window.location.href = '/noticeAdm';
   }
   public async edit(id: string) {
@@ -103,7 +104,8 @@ export class NoticeAdminComponent implements OnInit {
     this.noticeService
       .updateNotice(id, noticeToSend);
     var message = document.getElementById('editMessage');
-    message ? (message.innerHTML = 'Se ha editado la noticia.') : message;
+    if (message != null)
+      message.innerHTML = 'Se ha editado la noticia.';
     window.location.href = '/noticeAdm';
   }
   public delete(id: string) {

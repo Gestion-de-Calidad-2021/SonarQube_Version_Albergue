@@ -121,7 +121,8 @@ export class PetShopAdminComponent implements OnInit {
     this.petShopService.postItemPS(productToSend);
     this.image_dropped = false;
     var message = document.getElementById('addMessage');
-    message ? (message.innerHTML = 'Se ha añadido el producto.') : message;
+    if (message != null)
+      message.innerHTML = 'Se ha añadido el producto.';
     window.location.href = '/petShopAdm';
   }
 
@@ -157,7 +158,8 @@ export class PetShopAdminComponent implements OnInit {
     this.petShopService
       .updateItemPS(id, productToSend);
     var message = document.getElementById('editMessage');
-    message ? (message.innerHTML = 'Se ha editado el producto.') : message;
+    if (message != null)
+      message.innerHTML = 'Se ha editado el producto.';
     window.location.href = '/petShopAdm';
   }
 
