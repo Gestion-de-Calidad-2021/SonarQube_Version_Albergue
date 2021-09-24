@@ -87,7 +87,6 @@ export class EditPetComponent implements OnInit {
     }
     return error;
   }
-  ngOnInit(): void {}
   public declareVariables() {
     this.sizes = ['Pequeño', 'Mediano', 'Grande'];
   }
@@ -125,7 +124,7 @@ export class EditPetComponent implements OnInit {
     var photo_url = null;
     if (this.image_dropped) {
       var actual_url = this.singleDog.photo.substring(24);
-      this.dogService.deletePhoto(actual_url).subscribe((data) => {});
+      this.dogService.deletePhoto(actual_url);
       photo_url = await this.dogService.postPhoto(this.image).toPromise();
       photo_url = `${environment.ImportPhotoPets}${photo_url}`;
     }
