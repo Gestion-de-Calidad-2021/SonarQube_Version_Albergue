@@ -43,7 +43,7 @@ export class ImageDragDirective {
     // }
     for (let i = 0; i < evt.dataTransfer!.files.length; i++) {
       const file = evt.dataTransfer!.files[i];
-      const url = this.sanitizer.bypassSecurityTrustUrl(
+      const url = this.sanitizer.bypass(
         window.URL.createObjectURL(file)
       );
       files.push({ file, url });
