@@ -29,7 +29,7 @@ export class ImageUploadComponent implements OnInit {
     if (files) {
       var new_files: FileHandle[] = [];
       for (const file of files) {
-        let url = this.sanitizer.bypassSecurityTrustUrl(
+        let url = this.sanitizer.bypass(
           window.URL.createObjectURL(file)
         );
         new_files.push({file, url});
