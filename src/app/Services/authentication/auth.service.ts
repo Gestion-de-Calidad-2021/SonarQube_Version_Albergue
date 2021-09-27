@@ -23,12 +23,11 @@ export class AuthService {
 
   login(credentials: any): Observable<AuthAnswer> {
     let credentialToSend = JSON.stringify(credentials);
-    let va = this.http.post<AuthAnswer>(
+    return this.http.post<AuthAnswer>(
       this.loginurl,
       credentialToSend,
       httpOptions
     );
-    return va;
   }
 
   changePassword(passwordNew: any): Observable<boolean> {
