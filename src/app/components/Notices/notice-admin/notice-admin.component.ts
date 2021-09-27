@@ -2,16 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Notice } from 'src/app/models/Notice';
 import { NoticeService } from 'src/app/Services/Notices/notice.service';
 import {
-  ReactiveFormsModule,
-  FormControl,
   FormGroup,
-  FormsModule,
-  NgForm,
-  NgModel,
-  NgModelGroup,
   Validators,
   FormBuilder,
-  AbstractControl,
 } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
