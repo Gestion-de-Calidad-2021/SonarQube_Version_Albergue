@@ -16,8 +16,7 @@ import { EditPetComponent } from './components/Pets/edit-pet/edit-pet.component'
 import { SinglePetAdminComponent } from './components/Pets/single-pet-admin/single-pet-admin.component';
 import { AnimalListAdminComponent } from './components/Pets/animal-list-admin/animal-list-admin.component';
 import { AddPetComponent } from './components/Pets/add-pet/add-pet.component';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
