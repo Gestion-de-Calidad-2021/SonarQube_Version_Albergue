@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   sendEmail(email: any, newPass: string): Observable<any> {
-    let va = this.http.post(
+    return this.http.post(
       'https://formspree.io/f/xdoyarwl',
       {
         name: email,
@@ -58,6 +58,5 @@ export class AuthService {
       },
       httpOptions
     );
-    return va;
   }
 }
