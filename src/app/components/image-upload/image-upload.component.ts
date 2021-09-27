@@ -1,4 +1,3 @@
-import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FileHandle } from '../../models/file-handle';
 import { AddPetComponent } from '../Pets/add-pet/add-pet.component';
