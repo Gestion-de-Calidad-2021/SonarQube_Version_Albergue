@@ -32,13 +32,12 @@ export class ImageDragDirective {
     this.background = '#eeee';    
     let files: FileHandle[] = [];
 
-    for (let i = 0; i < evt.dataTransfer!.files.length; i++) {
-      const file = evt.dataTransfer!.files[i];
-      const url = this.sanitizer.bypass(
-        window.URL.createObjectURL(file)
-      );
-      files.push({ file, url });
-      }
+    let filesAd = evt.dataTransfer!.files;
+    for (let x of Array(filesAd.length).keys() ) {
+      const file = evt.dataTransfer!.files[x];
+      const url = this.sanitizer.bypass(window.URL.createObjectURL(file));
+      files.push({ file , url });
+    }
 
     if (files.length > 0) {
       this.files.emit(files);

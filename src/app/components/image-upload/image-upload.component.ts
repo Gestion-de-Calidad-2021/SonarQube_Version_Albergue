@@ -1,10 +1,8 @@
-import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FileHandle } from '../../models/file-handle';
 import { AddPetComponent } from '../Pets/add-pet/add-pet.component';
 import { EditPetComponent } from '../Pets/edit-pet/edit-pet.component';
 import { NoticeAdminComponent } from '../Notices/notice-admin/notice-admin.component';
-import { ModalMessageComponent } from '../modal-message/modal-message.component';
 import { PetShopAdminComponent } from '../PetShop/pet-shop-admin/pet-shop-admin.component';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
