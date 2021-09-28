@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.formModel.value).subscribe(
       (res) => {
-        const token = (<any>res).message;
+        const token = (res).message;
         localStorage.setItem('jwt', token);
         this.invalidLogin = false;
       },
