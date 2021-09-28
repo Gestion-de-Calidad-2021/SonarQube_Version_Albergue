@@ -5,8 +5,6 @@ import {
   FormBuilder,
   AbstractControl,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dog } from 'src/app/models/Dog';
 import { DogService } from 'src/app/Services/Dog/dog-service.service';
 import { ModalMessageComponent } from '../../modal-message/modal-message.component';
