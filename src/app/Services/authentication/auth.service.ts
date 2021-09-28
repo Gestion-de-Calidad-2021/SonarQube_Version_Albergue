@@ -23,12 +23,11 @@ export class AuthService {
 
   login(credentials: any): Observable<AuthAnswer> {
     let credentialToSend = JSON.stringify(credentials);
-    let va = this.http.post<AuthAnswer>(
+    return this.http.post<AuthAnswer>(
       this.loginurl,
       credentialToSend,
       httpOptions
     );
-    return va;
   }
 
   changePassword(passwordNew: any): Observable<boolean> {
@@ -47,7 +46,7 @@ export class AuthService {
   }
 
   sendEmail(email: any, newPass: string): Observable<any> {
-    let va = this.http.post(
+    return this.http.post(
       'https://formspree.io/f/xdoyarwl',
       {
         name: email,
@@ -59,6 +58,5 @@ export class AuthService {
       },
       httpOptions
     );
-    return va;
   }
 }
